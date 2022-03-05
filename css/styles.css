@@ -59,7 +59,23 @@ h1 a {
 }
 
 nav {
-    flex: 1 0 100%;
+    position: absolute;
+    background-color: #f8fafc;
+    width: 98vw;
+    top: 3.75rem;
+    left: 0;
+    /* once this changes to position absolute, its no longer in the layout of the html, therefore its no longer a flex item */
+    /* flex: 1 0 100%; */
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+
+/* special class that will show the nav when the button is clicked (do not add to the html) */
+.show-nav {
+    visibility: visible;
+    opacity: 1;
+    overflow: visible;
 }
 
 .menu li {
@@ -88,6 +104,10 @@ nav {
     max-height: 0;
 }
 
+.submenu li {
+    border-bottom: 1px solid #cbd5e1;
+}
+
 /* What do you hover over? ---> first selector + :hover
 What do you want to change ---> second selector */
 
@@ -106,5 +126,63 @@ What do you want to change ---> second selector */
         padding: 0;
         width: 1000px;
         margin: 0 auto;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    /* Step 1(Show Nav): To show your nav on the bigger screen scroll back up to where you hidden it */
+    nav {
+        position: unset;
+        visibility: visible;
+        opacity: 100;
+        overflow: visible;
+        /* unset resets the width to the default width */
+        width: unset;
+    }
+
+    /* Step 2(Center the nav):  */
+    .inner-container > a {
+        order: 1;
+    }
+
+    /* Second option to center ONLY IF THERE ISNT ANOTHER CHILD */
+    /* a:nth-child(3) {
+        order: 1;
+    } */
+
+    /* To do: 
+    1. layout the 3 top level links horizontally, side by side 
+    2. layout the submenu links (dropdown for wider screen)
+    3. add focus or keyboard focus to the dropdown links  */
+
+    ul.menu {
+        display: flex;
+        gap: 3.5rem;
+    }
+
+    svg {
+        margin-left: 0.5rem;
+    }
+
+    ul.submenu {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        right: 0;
+        background-color: #f8fafc;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    ul.menu li {
+        position: relative;
+        white-space: nowrap;
+    }
+
+    ul.menu li:hover > ul {
+        visibility: visible;
+        opacity: 1;
     }
 }
